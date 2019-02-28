@@ -15,20 +15,29 @@
 
 
 		<div id="listarea">
-		<ul id="musiclist"><?php
+			    <?php
+      $name = $_REQUEST["playlist"];
+      if(isset($name)){ 
+      		$fth = fopen("songs/".$name, "r");
+      			while ($line=fgets($fth)) { ?>
+      				<li class="mp3item"><?= $line ?></li>
+      		<?php  	}   
+         }else{ ?>
+
+		<ul id="musiclist">
+        <?php
         foreach (glob("songs/*.mp3") as $filename) {?>
           <li class="mp3item"><a href="<?= $filename ?>"><?= basename($filename) ?></a>
-        <?php } ?>
-      	<!--   To see element id
-				<li class="mp3item">
-					<a href="songs/Be More.mp3">Be More.mp3</a>
-					(5438375 b)
-				</li>
+        <?php }  ?>
 
-				<li class="playlistitem">
-					<a href="music.php?playlist=mypicks.txt">mypicks.txt</a>
-				</li>-->
+        <?php
+        foreach (glob("songs/*.txt") as $favname) { ?>
+            <li class="playlistitem"><a href="music.php?playlist=<?= basename($favname) ?>"><?= basename("$favname") ?></a>
+          <?php } ?>
 			</ul>
+
+<?php } ?>
+
 		</div>
 	</body>
 </html>
