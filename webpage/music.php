@@ -24,7 +24,7 @@
       		<?php  	}   
          }else{ ?>
 
-		<ul id="musiclist">
+		<ul id="musiclist" >
         <?php
         foreach (glob("songs/*.mp3") as $filename) {?>
           <li class="mp3item"><a href="<?= $filename ?>"><?= basename($filename) ?></a>
